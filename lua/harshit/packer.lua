@@ -29,10 +29,11 @@ return require('packer').startup(function(use)
   use {
 	  'nvim-treesitter/playground'
   }
-	
+
   use('ThePrimeagen/harpoon')
   use('nvim-lua/plenary.nvim')
 
+  use('ThePrimeagen/vim-be-good')
   -- Setting up LSP
   use {
 	  'VonHeikemen/lsp-zero.nvim',
@@ -50,4 +51,21 @@ return require('packer').startup(function(use)
 		  {'L3MON4D3/LuaSnip'},
 	  }
   }
+
+  use {
+      "wojciech-kulik/xcodebuild.nvim",
+      requires = {
+          "nvim-telescope/telescope.nvim",
+          "MunifTanjim/nui.nvim",
+          "nvim-tree/nvim-tree.lua", -- (optional) to manage project files
+          "stevearc/oil.nvim", -- (optional) to manage project files
+          "nvim-treesitter/nvim-treesitter", -- (optional) for Quick tests support (required Swift parser)
+      },
+      config = function()
+          require("xcodebuild").setup({
+              -- put some options here or leave it empty to use default settings
+          })
+      end,
+  }
+
 end)

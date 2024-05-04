@@ -12,13 +12,14 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	-- Replace the language servers listed here 
 	-- with the ones you want to install
-	ensure_installed = {'clangd', 'rust_analyzer', 'lua_ls'},
+	ensure_installed = {'clangd', 'lua_ls'},
 	handlers = {
 		lsp.default_setup,
 	},
 })
 
 require('lspconfig').clangd.setup({})
+require('lspconfig').sourcekit.setup({})
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()

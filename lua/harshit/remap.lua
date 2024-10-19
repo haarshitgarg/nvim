@@ -27,3 +27,11 @@ vim.keymap.set("n", "<leader>xq", "<cmd>Telescope quickfix<cr>", { desc = "Show 
 
 vim.keymap.set("n", "<leader>xx", "<cmd>XcodebuildQuickfixLine<cr>", { desc = "Quickfix Line" })
 vim.keymap.set("n", "<leader>xa", "<cmd>XcodebuildCodeActions<cr>", { desc = "Show Code Actions" })
+
+
+-- LuaSnip keybindings
+vim.api.nvim_set_keymap('i', '<C-k>', "<cmd>lua require('luasnip').expand_or_jump()<CR>", {silent = true})
+vim.api.nvim_set_keymap('s', '<C-k>', "<cmd>lua require('luasnip').expand_or_jump()<CR>", {silent = true})
+vim.api.nvim_set_keymap('i', '<C-j>', "<cmd>lua require('luasnip').jump(-1)<CR>", {silent = true})
+vim.api.nvim_set_keymap('s', '<C-j>', "<cmd>lua require('luasnip').jump(-1)<CR>", {silent = true})
+

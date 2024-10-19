@@ -68,4 +68,17 @@ return require('packer').startup(function(use)
       end,
   }
 
+  use {'mfussenegger/nvim-jdtls'}
+
+
+  -- Auto generation of template code
+  use {
+      'L3MON4D3/LuaSnip',
+      requires = { 'rafamadriz/friendly-snippets' },
+      config = function()
+          require('luasnip.loaders.from_vscode').lazy_load()
+      end
+  }
+
+
 end)

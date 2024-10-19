@@ -12,7 +12,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	-- Replace the language servers listed here 
 	-- with the ones you want to install
-	ensure_installed = {'clangd', 'lua_ls'},
+	ensure_installed = {'clangd', 'lua_ls', 'jdtls'},
 	handlers = {
 		lsp.default_setup,
 	},
@@ -20,6 +20,12 @@ require('mason-lspconfig').setup({
 
 require('lspconfig').clangd.setup({})
 require('lspconfig').sourcekit.setup({})
+
+local config = {
+    cmd = {'/opt/homebrew/Cellar/jdtls/1.40.0/bin/jdtls'},
+    root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+}
+require('jdtls').start_or_attach(config)
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()

@@ -8,8 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.6',
-	  -- or                            , branch = '0.1.x',
+	  'nvim-telescope/telescope.nvim', tag = '0.1.8',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
@@ -97,12 +96,6 @@ return require('packer').startup(function(use)
       end,
   })
 
-  use {
-      'neovim/nvim-lspconfig',
-      config = function()
-          require('lspconfig').ts_ls.setup({})
-      end
-  }
 
   -- Get integration
   use 'tpope/vim-fugitive'

@@ -5,6 +5,9 @@ vim.keymap.set("n", "<leader>y", vim.diagnostic.open_float, { noremap = true, si
 
 vim.keymap.set("n", "<leader>gr", [[:%s/<C-r><C-w>//g<Left><Left>]])
 
+-- LSP references with Telescope
+vim.keymap.set("n", "<leader>r", "<cmd>Telescope lsp_references<cr>", { desc = "Show References" })
+
 vim.keymap.set("n", "<leader>X", "<cmd>XcodebuildPicker<cr>", { desc = "Show Xcodebuild Actions" })
 vim.keymap.set("n", "<leader>xf", "<cmd>XcodebuildProjectManager<cr>", { desc = "Show Project Manager Actions" })
 

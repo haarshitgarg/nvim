@@ -1,6 +1,4 @@
 local lsp = require("lsp-zero")
-require('lspconfig').lua_ls.setup({})
--- tutorial: https://lsp-zero.netlify.app/v3.x/tutorial.html
 
 lsp.on_attach(function(client, bufnr)
 	-- see :help lsp-zero-keybindings
@@ -12,24 +10,43 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	-- Replace the language servers listed here 
 	-- with the ones you want to install
-	ensure_installed = {'clangd', 'lua_ls', 'html', 'pyright', 'gopls'},
+	ensure_installed = {'clangd', 'lua_ls', 'html', 'pyright', 'gopls', 'ts_ls'},
 	handlers = {
 		lsp.default_setup,
+		-- Custom handler for TypeScript
+		ts_ls = function()
+			vim.lsp.config('ts_ls', {})
+		end,
+		-- Custom handler for Go with position encoding
+		gopls = function()
+			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			vim.lsp.config('gopls', {
+				capabilities = capabilities,
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+						},
+					},
+				},
+			})
+		end,
+		-- Custom handler for HTML with snippet support
+		html = function()
+			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
+			vim.lsp.config('html', {
+				capabilities = capabilities,
+				filetypes = {'html', 'jsp'},
+			})
+		end,
 	},
 })
 
-require('lspconfig').clangd.setup({})
-require('lspconfig').sourcekit.setup({})
---require('lspconfig').gopls.setup({})
-
-
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-require('lspconfig').html.setup({
-    capabilities = capabilities,
-    filetypes = {'html', 'jsp', 'pyright'},
-})
+-- Setup Swift/iOS LSP (not available via Mason)
+vim.lsp.config('sourcekit', {})
 
 --local config = {
 --    cmd = {'/opt/homebrew/Cellar/jdtls/1.41.0/bin/jdtls'},

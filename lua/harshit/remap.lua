@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+vim.keymap.set("n", "<leader>y", vim.diagnostic.open_float, { noremap = true, silent = true })
+
 vim.keymap.set("n", "<leader>gr", [[:%s/<C-r><C-w>//g<Left><Left>]])
 
 vim.keymap.set("n", "<leader>X", "<cmd>XcodebuildPicker<cr>", { desc = "Show Xcodebuild Actions" })
@@ -34,4 +36,7 @@ vim.api.nvim_set_keymap('i', '<C-k>', "<cmd>lua require('luasnip').expand_or_jum
 vim.api.nvim_set_keymap('s', '<C-k>', "<cmd>lua require('luasnip').expand_or_jump()<CR>", {silent = true})
 vim.api.nvim_set_keymap('i', '<C-j>', "<cmd>lua require('luasnip').jump(-1)<CR>", {silent = true})
 vim.api.nvim_set_keymap('s', '<C-j>', "<cmd>lua require('luasnip').jump(-1)<CR>", {silent = true})
+
+-- Window change key binding
+vim.keymap.set("n", "<leader>w", "<C-w>")
 

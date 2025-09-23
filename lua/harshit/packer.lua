@@ -16,8 +16,13 @@ return require('packer').startup(function(use)
   use { 
 	  "rose-pine/neovim", 
 	  as = "rose-pine",
+      tag = "v0.1.0",
 	  config = function()
-		  vim.cmd('colorscheme rose-pine')
+          require('rose-pine').setup({
+              disable_background = true,
+              disable_float_background = true,
+          })
+          vim.cmd('colorscheme rose-pine')
 	  end
   }
 
@@ -51,6 +56,7 @@ return require('packer').startup(function(use)
 		  {'L3MON4D3/LuaSnip'},
 	  }
   }
+
 
   use {
       "wojciech-kulik/xcodebuild.nvim",
@@ -91,5 +97,14 @@ return require('packer').startup(function(use)
       end,
   })
 
+  use {
+      'neovim/nvim-lspconfig',
+      config = function()
+          require('lspconfig').ts_ls.setup({})
+      end
+  }
+
+  -- Get integration
+  use 'tpope/vim-fugitive'
 
 end)

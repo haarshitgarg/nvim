@@ -12,7 +12,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	-- Replace the language servers listed here 
 	-- with the ones you want to install
-	ensure_installed = {'clangd', 'lua_ls', 'jdtls', 'html'},
+	ensure_installed = {'clangd', 'lua_ls', 'html', 'pyright', 'gopls'},
 	handlers = {
 		lsp.default_setup,
 	},
@@ -20,21 +20,23 @@ require('mason-lspconfig').setup({
 
 require('lspconfig').clangd.setup({})
 require('lspconfig').sourcekit.setup({})
+--require('lspconfig').gopls.setup({})
+
 
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require('lspconfig').html.setup({
     capabilities = capabilities,
-    filetypes = {'html', 'jsp'},
+    filetypes = {'html', 'jsp', 'pyright'},
 })
 
-local config = {
-    cmd = {'/opt/homebrew/Cellar/jdtls/1.41.0/bin/jdtls'},
-    root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
-    filetypes = {'java', 'jsp'}
-}
-require('jdtls').start_or_attach(config)
+--local config = {
+--    cmd = {'/opt/homebrew/Cellar/jdtls/1.41.0/bin/jdtls'},
+--    root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+--    filetypes = {'java', 'jsp'}
+--}
+--require('jdtls').start_or_attach(config)
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()

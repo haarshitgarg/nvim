@@ -40,6 +40,10 @@ vim.api.nvim_set_keymap('s', '<C-k>', "<cmd>lua require('luasnip').expand_or_jum
 vim.api.nvim_set_keymap('i', '<C-j>', "<cmd>lua require('luasnip').jump(-1)<CR>", {silent = true})
 vim.api.nvim_set_keymap('s', '<C-j>', "<cmd>lua require('luasnip').jump(-1)<CR>", {silent = true})
 
+-- Jump list navigation
+vim.keymap.set("n", "<leader>b", "<C-o>", { desc = "Jump back in jump list" })
+vim.keymap.set("n", "<leader>f", "<C-i>", { desc = "Jump forward in jump list" })
+
 -- Window change key binding
 vim.keymap.set("n", "<leader>w", "<C-w>")
 
